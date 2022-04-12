@@ -84,19 +84,26 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-curl http:/localhost:5000/app/flip
+curl http://localhost:5000/app/flip
 ```
 
 #### Response body
 
 ```
-
+{"flip":"heads"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 16
+ETag: W/"10-VYm8Bk1/RW8RGhDXdTwBYk6lbGE"
+Date: Tue, 12 Apr 2022 15:00:51 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flips/:number/ (GET)
@@ -104,19 +111,26 @@ curl http:/localhost:5000/app/flip
 #### Request cURL
 
 ```
-curl http:/localhost:5000/app/flips/:number/
+curl http:/localhost:5000/app/flips/30/
 ```
 
 #### Response body
 
 ```
-
+{"raw":["heads","tails","heads","tails","tails","tails","tails","tails","tails","heads","heads","tails","heads","tails","tails","tails","heads","tails","tails","heads","heads","tails","heads","tails","heads","heads","heads","tails","heads","tails"],"summary":{"tails":17,"heads":13}}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 283
+ETag: W/"11b-QmqHmmmN/5WHVyj6DD+uu5qtjTU"
+Date: Tue, 12 Apr 2022 15:01:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/coin/ (GET)
@@ -124,7 +138,7 @@ curl http:/localhost:5000/app/flips/:number/
 #### Request cURL
 
 ```
-curl http:/localhost:5000/app/flip/coin/
+curl http://localhost:5000/app/flip/coin/
 ```
 
 #### Response body
@@ -144,19 +158,26 @@ curl http:/localhost:5000/app/flip/coin/
 #### Request cURL
 
 ```
-curl http:/localhost:5000/app/flip/call/:guess/
+curl http://localhost:5000/app/flip/call/:guess/
 ```
 
 #### Response body
 
 ```
-
+{"call":"heads","flip":"heads","result":"win"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 46
+ETag: W/"2e-U/q8iZ4JKqczXPIvtwiVRpEFlRc"
+Date: Tue, 12 Apr 2022 15:03:25 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/ (POST)
@@ -218,19 +239,26 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-curl http:/localhost:5000/app/log/access/
+curl http://localhost:5000/app/log/access/
 ```
 
 #### Response body
 
 ```
-
+[{"id":1,"remoteaddr":"::1","remoteuser":null,"time":"1649774794121.0","method":"GET","url":"/app/log/access","protocol":"http","httpversion":1.1,"status":200,"referer":null,"useragent":"curl/7.77.0"}]
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 1398
+ETag: W/"576-ctZlbFrZvS06vazl9S4bElbzB9c"
+Date: Tue, 12 Apr 2022 14:59:00 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/log/access/ (GET)
