@@ -33,14 +33,88 @@
       <button id="guessnav">Guess the result</button>
     </nav>
     <div id="home">
-      
+      <h1>Coin Flip Simulator</h1>
+      <p>3 different types of Coin Flips</p>
+      <p>HOME tells you were to go (you are there now)</p>
+      <p>SINGLE provides a single coin flip and MULTI will let you flip multiple coins at once</p>
+      <p>Even go to GUESS to see if you can predict what way the coin is going to flip</p>
     </div>    
     <div id="single" class="hidden">
+      <head>
+        <title>Flipping one Coin</title>
+      </head>
+      <body>
+        <button id="coin">Toss?</button>
+        <p id="active"></p>
+        <p>Result: <span> id="result"</span></p>
+        <script>
+          const coin = document.getElementById("coin")
+          coin.addEventListener("click", flipCoin)
+          function flipCoin(){
+            fetch('http://localhost:5000/app/flip', {mode:'cors'}).then(function(response) {
+              return response.json();
+            }).then(function(result){
+              console.log(result);
+              document.getElementById("result").innerHTML= result.flip;
+              coin.disabled = true
+            })
+          }
+        </script>
+
+      </body>
       
     </div>
     <div id="multi" class="hidden">
-      
+      <h1>Multiple coin tosses</h1>
+      <form> id = "coins">
+        <label for="number">
+          <strong>How Many Coins We Flippin</strong>
+        </label>
+        <input type="number" name="number" id="number">
+        <input type="submit" value="Flip those nice lil coins">
+      </form>
+      <h2>Results</h2>
+      <p id="heads"></p>
+      <p id="tails"></p>
+
     </div>
+    <script>
+      const coins = document.getElementById("coins")
+      coins.addEventListener("submit", flipCoins)
+      async function flipCoins(event){
+        event.preventDefault();
+
+        const endpoint = "app/flip/coins/"
+        const url = document.baseURI+endpoint
+        const formEvent = event.currentTarget
+
+        try {
+          const formData = new FormData(formEvent);
+          const flups = await sendFlips({url, formData});
+          console.log(flips);
+          document.getElementById("heads").innerHTML = "Heads: "+flips.summary.heads;
+          document.getElementById("tails").innerHTML = "Tails: "+flips.summary.tails;
+
+        }catch(error){
+          console.log(error)
+        }
+        async function sendFlips({url, formData}){
+          const plainFormData = Object.fromEntries(formData.entries());
+          const formDataJson= JSON.stringify(plainFormData);
+          console.log(formDataJson);
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type":"application/json",
+              Accept: "application/json"
+            },
+            body: formDataJson
+          };
+          const response = await fetch(url, options);
+          return response.json
+        }
+      }
+    </script>
     <div id="guess" class="hidden">
       
     </div>

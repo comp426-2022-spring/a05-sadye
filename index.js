@@ -10,6 +10,11 @@ const md5 = require('md5')
 // Serve static HTML files
 app.use(express.static('./public'));
 
+// Add cors dependency
+const cors = require('cors')
+// Set up cors middleware on all endpoints
+app.use(cors())
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
