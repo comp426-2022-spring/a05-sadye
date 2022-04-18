@@ -27,10 +27,11 @@
   </head>
   <body>
     <nav>
-      <button id="homenav">Home</button>
-      <button id="singlenav">Flip one coin</button>
-      <button id="multinav">Flip multiple coins</button>
-      <button id="guessnav">Guess the result</button>
+      <button id="homenav" onclick="focuser('home')">Home</button>
+      <button id="singlenav" onclick ="focuser('single')">Flip one coin</button>
+     
+      <button id="multinav" onclick = "focuser('multi')">Flip multiple coins</button>
+      <button id="guessnav" onclick = "focuser('guess')">Guess the result</button>
     </nav>
     <div id="home">
       <h1>Coin Flip Simulator</h1>
@@ -46,27 +47,16 @@
       <body>
         <button id="coin">Toss?</button>
         <p id="active"></p>
-        <p>Result: <span> id="result"</span></p>
-        <script>
-          const coin = document.getElementById("coin")
-          coin.addEventListener("click", flipCoin)
-          function flipCoin(){
-            fetch('http://localhost:5000/app/flip', {mode:'cors'}).then(function(response) {
-              return response.json();
-            }).then(function(result){
-              console.log(result);
-              document.getElementById("result").innerHTML= result.flip;
-              coin.disabled = true
-            })
-          }
-        </script>
+        <img src="/assets/img/coin.png" id="quarter">
+        <p>Result: <span id="result"></span></p>
+       
 
       </body>
       
     </div>
     <div id="multi" class="hidden">
       <h1>Multiple coin tosses</h1>
-      <form> id = "coins">
+      <form id = "coins">
         <label for="number">
           <strong>How Many Coins We Flippin</strong>
         </label>
@@ -78,45 +68,22 @@
       <p id="tails"></p>
 
     </div>
-    <script>
-      const coins = document.getElementById("coins")
-      coins.addEventListener("submit", flipCoins)
-      async function flipCoins(event){
-        event.preventDefault();
-
-        const endpoint = "app/flip/coins/"
-        const url = document.baseURI+endpoint
-        const formEvent = event.currentTarget
-
-        try {
-          const formData = new FormData(formEvent);
-          const flups = await sendFlips({url, formData});
-          console.log(flips);
-          document.getElementById("heads").innerHTML = "Heads: "+flips.summary.heads;
-          document.getElementById("tails").innerHTML = "Tails: "+flips.summary.tails;
-
-        }catch(error){
-          console.log(error)
-        }
-        async function sendFlips({url, formData}){
-          const plainFormData = Object.fromEntries(formData.entries());
-          const formDataJson= JSON.stringify(plainFormData);
-          console.log(formDataJson);
-          const options = {
-            method: "POST",
-            headers: {
-              "Content-Type":"application/json",
-              Accept: "application/json"
-            },
-            body: formDataJson
-          };
-          const response = await fetch(url, options);
-          return response.json
-        }
-      }
-    </script>
+   
     <div id="guess" class="hidden">
-      
+        <h1>Now time for you to guess: Heads or Tails?</h1>
+        <form id = "guess">
+          <input type="radio" name="response" value="heads">
+          <label for="heads">Heads</label><br>
+          <input type="radio" name="response" value="tails">
+          <label for="tails">Tails</label><br>
+          <input type="submit" value="TIME TO GUESS">
+
+        </form>
+        <h1>Results</h1>
+          <p id = "call"></p>
+          <p id = "flipped"></p>
+          <p id = "winlose"></p>
+
     </div>
 	<script src="main.js"></script>
   </body>

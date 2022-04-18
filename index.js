@@ -150,15 +150,14 @@ function coinFlips(flips) {
   
   }
 
-app.post('/app/flip/coins', (req, res) => {
-  var number = req.body.number
-  var raw = coinFlips(number)
-  var summary = countFlips(raw)
-  res.status(200).json({ 'raw' : raw , 'summary' : summary })
-});
+  app.post('/app/flip/coins/', (req, res, next) => {
+    const flips = coinFlips(req.body.number)
+    const count = countFlips(flips)
+    res.status(200).json({"raw":flips,"summary":count})
+})
 
 app.get('/app/flips/:number', (req, res) => {
-	var number = req.params.number
+    var number = req.params.number
   var raw = coinFlips(number)
   var summary = countFlips(raw)
   res.status(200).json({ 'raw' : raw , 'summary' : summary })
@@ -195,7 +194,8 @@ app.get('/app/flip/call/tails', (req, res) => {
 
 
 app.use(function(req, res) {
-  res.status(404).send("Endpoint does not exist")
-  res.type("text/plain")
+    res.type("text/plain")
+    res.status(404).send("Endpoint does not exist")
+  
 
 })
