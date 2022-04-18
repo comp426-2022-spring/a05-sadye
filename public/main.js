@@ -70,29 +70,37 @@ const coins = document.getElementById("coins")
 				return response.json()
 			}
 // Guess a flip by clicking either heads or tails button
-const guess = document.getElementById("guess")
-			// Add event listener for coins form
-			guess.addEventListener("submit", guessCoin)
-			// Create the submit handler
-			async function guessCoin(event) {
-				event.preventDefault();
-				
-				const endpoint = "app/flip/call/"
-				const url = document.baseURI+endpoint
-
-				const formEvent = event.currentTarget
-
-				try {
-					const formData = new FormData(formEvent);
-					const call = await sendFlips({ url, formData });
-
-					console.log(call);
-					document.getElementById("call").innerHTML = "Your Guess: "+call.call;
-					document.getElementById("flipped").innerHTML = "Tails: "+call.flip;
-                    document.getElementById("winlose").innerHTML = "Results: "+call.results;
-				} catch (error) {
-					console.log(error);
-				}
+const heads = document.getElementById("headsbutt")
+const tails = document.getElementById('tailsbutt')
+// Add event listener for coin button
+			heads.addEventListener("click", guessCoinH)
+            tails.addEventListener("click", guessCoinT)
+			function guessCoinH() {
+                fetch('http://localhost:3000/app/flip/call/heads', {mode: 'cors'})
+  				.then(function(response) {
+    			  return response.json();
+  				})
+				.then(function(result) {
+					console.log(result);
+					document.getElementById("call").innerHTML = result.call;
+                    document.getElementById("flipped").innerHTML = result.flip;
+                    document.getElementById("winlose").innerHTML = result.result;
+					
+					
+				})
 			}
-			// Create a data sender
+            function guessCoinT() {
+                fetch('http://localhost:3000/app/flip/call/tails', {mode: 'cors'})
+  				.then(function(response) {
+    			  return response.json();
+  				})
+				.then(function(result) {
+					console.log(result);
+					document.getElementById("call").innerHTML = result.call;
+                    document.getElementById("flipped").innerHTML = result.flip;
+                    document.getElementById("winlose").innerHTML = result.result;
+					
+					
+				})
+			}
 			
