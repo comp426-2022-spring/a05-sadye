@@ -134,8 +134,13 @@ const tails = document.getElementById('tailsbutt')
 				.then(function(result) {
 					console.log(result);
 					document.getElementById("call").innerHTML = result.call;
+                    document.getElementById("callcoin").setAttribute("src", "/assets/img/"+result.call+".png");
+                   
                     document.getElementById("flipped").innerHTML = result.flip;
+                    document.getElementById("flipped coin").setAttribute("src", "/assets/img/"+result.flip+".png");
+                  
                     document.getElementById("winlose").innerHTML = result.result;
+                    
 					
 					
 				})
