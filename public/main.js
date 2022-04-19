@@ -1,3 +1,4 @@
+
 // Focus div based on nav button click
 function focuser(divClick){
     var activeDiv = document.getElementsByClassName("active")
@@ -20,13 +21,40 @@ const coin = document.getElementById("coin")
   				})
 				.then(function(result) {
 					console.log(result);
+                    
 					document.getElementById("result").innerHTML = result.flip;
 					document.getElementById("quarter").setAttribute("src", "/assets/img/"+result.flip+".png");
+                    document.getElementById("quarter").setAttribute("class", "smallcoin")
 					
 				})
 			}
 // Flip multiple coins and show coin images in table as well as summary results
+function tableCreate(flipsArr){
+    let body = document.getElementById("tbl");
+    let tbl  = document.createElement('table');
+    
 
+    for(let i = 0; i < flipsArr.length; i++){
+        let tr = tbl.insertRow();
+        
+        for(let j = 0; j < 2; j++){
+                let td = tr.insertCell();
+                if(j===0){
+                    td.appendChild(document.createTextNode(flipsArr[i])); 
+                } else {
+                    var image = document.createElement('img');
+                    image.setAttribute("src", "/assets/img/"+flipsArr[i]+".png");
+                    image.setAttribute("class", "smallcoin");
+                    td.appendChild(image); 
+                }
+                
+                
+                td.style.border = '1px solid black';
+            }     
+    }
+    body.appendChild(tbl);
+}
+  
 // Enter number and press button to activate coin flip series
 const coins = document.getElementById("coins")
 			// Add event listener for coins form
@@ -45,6 +73,7 @@ const coins = document.getElementById("coins")
 					const flips = await sendFlips({ url, formData });
 
 					console.log(flips);
+                    tableCreate(flips.raw)
 					document.getElementById("heads").innerHTML = "Heads: "+flips.summary.heads;
 					document.getElementById("tails").innerHTML = "Tails: "+flips.summary.tails;
 				} catch (error) {
