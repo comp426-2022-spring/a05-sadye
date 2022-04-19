@@ -27,17 +27,17 @@
   </head>
   <body>
     <nav>
-      <button id="homenav" onclick="focuser('home')">Home</button>
-      <button id="singlenav" onclick ="focuser('single')">Flip one coin</button>
+      <button class = "button-54" id="homenav" onclick="focuser('home')">Home</button>
+      <button class = "button-54"  id="singlenav" onclick ="focuser('single')">Flip one coin</button>
      
-      <button id="multinav" onclick = "focuser('multi')">Flip multiple coins</button>
-      <button id="guessnav" onclick = "focuser('guess')">Guess the result</button>
+      <button class = "button-54" id="multinav" onclick = "focuser('multi')">Flip multiple coins</button>
+      <button class = "button-54" id="guessnav" onclick = "focuser('guess')">Guess the result</button>
     </nav>
     <div id="home">
       <h1>Coin Flip Simulator</h1>
       <p>3 different types of Coin Flips</p>
       <p>HOME tells you were to go (you are there now)</p>
-      <p>SINGLE provides a single coin flip and MULTI will let you flip multiple coins at once</p>
+      <p>FLIP ONE COIN provides a single coin flip and FLIP MULTIPLE COINS will let you flip multiple coins at once</p>
       <p>Even go to GUESS to see if you can predict what way the coin is going to flip</p>
     </div>    
     <div id="single" class="hidden">
@@ -45,7 +45,7 @@
         <title>Flipping one Coin</title>
       </head>
       <body>
-        <button id="coin">Toss?</button>
+        <button class = "button-54" id="coin">Toss?</button>
         <p id="active"></p>
         <img src="/assets/img/coin.png" id="quarter">
         <p>Result: <span id="result"></span></p>
@@ -61,13 +61,14 @@
           <strong>How Many Coins We Flippin</strong>
         </label>
         <input type="number" name="number" id="number">
-        <input type="submit" value="Flip those nice lil coins">
+        <input class = "button-54" type="submit" value="Flip those nice lil coins">
       </form>
-      <h2>Raw Summary</h2>
-      <p id = tbl></p>
       <h2>Results</h2>
       <p id="heads"></p>
       <p id="tails"></p>
+      <h2>Raw Summary</h2>
+      <p id = tbl></p>
+      
 
     </div>
    
@@ -75,15 +76,16 @@
         <h1>Now time for you to guess: Heads or Tails?</h1>
         
        
-          <button id="headsbutt">Heads</button>
-          <button id="tailsbutt">Tails</button>
+          <button class = "button-54"  id="headsbutt">Heads</button>
+          <button class = "button-54"  id="tailsbutt">Tails</button>
         <h1>Results</h1>
-          <p>Guess by you</p>
+          <h2>Guess by you</h2>
+
           <p id = "call"></p>
 
-          <p>What was flipped</p>
+          <h2>What was flipped</h2>
           <p id = "flipped"></p>
-          <p>Win or Lose?</p>
+          <h2>Win or Lose?</h2>
           <p id = "winlose"></p>
 
     </div>

@@ -32,6 +32,14 @@ const coin = document.getElementById("coin")
 function tableCreate(flipsArr){
     let body = document.getElementById("tbl");
     let tbl  = document.createElement('table');
+    let tblH = tbl.insertRow();
+    let cell = document.createElement("th");
+    cell.innerHTML = "Flip Result";
+    tblH.appendChild(cell);
+    let cell1 = document.createElement("th");
+    cell1.innerHTML = "Coin Image";
+    tblH.appendChild(cell1);
+    
     
 
     for(let i = 0; i < flipsArr.length; i++){
