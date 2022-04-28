@@ -133,27 +133,7 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 
-### /app/flip/coin/ (GET)
 
-#### Request cURL
-
-```
-curl http://localhost:5000/app/flip/coin/
-```
-
-#### Response body
-
-```
-
-```
-
-#### Response headers
-
-```
-
-```
-
-### /app/flip/call/:guess/ (GET)
 
 #### Request cURL
 
@@ -261,25 +241,7 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 
-### /app/log/access/ (GET)
 
-#### Request cURL
-
-```
-curl http:/localhost:5000/app/log/access/
-```
-
-#### Response body
-
-```
-
-```
-
-#### Response headers
-
-```
-
-```
 
 ### /app/log/error/ (GET)
 
