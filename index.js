@@ -34,7 +34,7 @@ const server = app.listen(port, () => {
 if(log=='true'){
   // Use morgan for logging to files
   // Create a write stream to append (flags: 'a') to a file
-  if(!fs.existsSync('./log/access.log') ){
+  if(fs.existsSync('./log/access.log') ){
     const accessLogStrm = fs.createWriteStream('./log/access.log', { flags: 'a' })
     // Set up the access logging middleware
     app.use(morgan('combined', { stream: accessLogStrm }))
