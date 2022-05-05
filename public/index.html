@@ -27,22 +27,71 @@
   </head>
   <body>
     <nav>
-      <button id="homenav">Home</button>
-      <button id="singlenav">Flip one coin</button>
-      <button id="multinav">Flip multiple coins</button>
-      <button id="guessnav">Guess the result</button>
+      <button class = "button-54" id="homenav" onclick="focuser('home')">Home</button>
+      <button class = "button-54"  id="singlenav" onclick ="focuser('single')">Flip one coin</button>
+     
+      <button class = "button-54" id="multinav" onclick = "focuser('multi')">Flip multiple coins</button>
+      <button class = "button-54" id="guessnav" onclick = "focuser('guess')">Guess the result</button>
     </nav>
     <div id="home">
-      
+      <h1>Coin Flip Simulator</h1>
+      <p>3 different types of Coin Flips</p>
+      <p>HOME tells you were to go (you are there now)</p>
+      <p>FLIP ONE COIN provides a single coin flip and FLIP MULTIPLE COINS will let you flip multiple coins at once</p>
+      <p>Even go to GUESS to see if you can predict what way the coin is going to flip</p>
     </div>    
     <div id="single" class="hidden">
+      <head>
+        <title>Flipping one Coin</title>
+      </head>
+      <body>
+        <button class = "button-54" id="coin">Toss?</button>
+        <p id="active"></p>
+        <img class = "smallcoin" src="/assets/img/coin.png" id="quarter">
+        <p>Result: <span id="result"></span></p>
+       
+
+      </body>
       
     </div>
     <div id="multi" class="hidden">
+      <h1>Multiple coin tosses</h1>
+      <form id = "coins">
+        <label for="number">
+          <strong>How Many Coins We Flippin</strong>
+        </label>
+        <input type="number" name="number" id="number">
+        <input class = "button-54" type="submit" value="Flip those nice lil coins">
+      </form>
+      <h2>Results</h2>
+      <p id="heads"></p>
+      <p id="tails"></p>
+      <h2>Raw Summary</h2>
+      <p id = tbl></p>
       
+
     </div>
+   
     <div id="guess" class="hidden">
-      
+        <h1>Now time for you to guess: Heads or Tails?</h1>
+        
+       
+          <button class = "button-54"  id="headsbutt">Heads</button>
+          <button class = "button-54"  id="tailsbutt">Tails</button>
+        <h1>Results</h1>
+          <h2>Guess by you</h2>
+
+          <p id = "call"></p>
+          <img class = "smallcoin" src="/assets/img/coin.png" id="callcoin">
+
+          <h2>What was flipped</h2>
+          <p id = "flipped"></p>
+          <img class = "smallcoin" src="/assets/img/coin.png" id="flipped coin">
+
+          <h2>Win or Lose?</h2>
+          <p id = "winlose"></p>
+         
+
     </div>
 	<script src="main.js"></script>
   </body>
